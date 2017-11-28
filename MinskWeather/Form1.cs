@@ -40,6 +40,9 @@ namespace MinskWeather
                                         "\n\n");
                 lblResultTemperature.Text = weatherResponse.Main.Temp.ToString();
                 lblResultPressure.Text = weatherResponse.Main.Pressure.ToString();
+
+                //Google Map
+                
             }catch(Exception)
             {
                 
@@ -52,6 +55,17 @@ namespace MinskWeather
         {
             lblResultTemperature.Text = "";
             lblResultPressure.Text = "";
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFile = new SaveFileDialog();
+            saveFile.DefaultExt = "*.rtf";
+            saveFile.Filter = "RTF Files|*.rtf";
+            if(saveFile.ShowDialog()==System.Windows.Forms.DialogResult.OK&&saveFile.FileName.Length>0)
+            {
+                richTextBox1.SaveFile(saveFile.FileName, RichTextBoxStreamType.PlainText);
+            }
         }
     }
 }
